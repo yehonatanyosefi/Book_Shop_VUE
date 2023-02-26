@@ -44,8 +44,19 @@ object {
 button {
 	all: unset;
 	cursor: pointer;
+	filter: drop-shadow(rgba(0, 0, 0, 0.25) 1.5px 1.5px 1.5px);
+	transition: scale 250ms;
+}
+button:hover {
+	scale: 1.025;
 }
 
 input {
-	filter: drop-shadow(rgba(0, 0, 0, 0.24) 3px 3px 8px);
+	/* all: unset; */
+	background-color: var(--clr5);
+	color: var(--clr1);
+	border-radius: 0.2em;
+	border: 1px solid var(--clr1);
+	font: inherit;
+	filter: drop-shadow(rgba(0, 0, 0, 0.25) 1.5px 1.5px 1.5px);
 }

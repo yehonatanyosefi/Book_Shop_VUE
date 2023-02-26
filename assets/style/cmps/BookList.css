@@ -14,24 +14,23 @@
 	position: relative;
 	box-shadow: rgba(0, 0, 0, 0.24) 3px 3px 8px;
 	max-width: max-content;
-	position: relative;
 	cursor: pointer;
 	border-radius: 0.5em;
 }
 .book-preview {
 	display: grid;
 	height: 100%;
+	grid-template-rows: auto 1fr auto;
 }
 .book-card .on-sale {
 	position: absolute;
 	width: 50%;
 }
 .book-card .price {
-	flex: 1;
 }
 
 .book-card .delete-btn {
-	display: none;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 	position: absolute;
@@ -39,19 +38,21 @@
 	right: -2%;
 	width: 1.5em;
 	height: 1.5em;
-	border: 1px solid var(--clr2);
-	background-color: var(--clr2);
+	border: 1px solid var(--clr1);
+	background-color: var(--clr1);
 	color: var(--clr5);
 	border-radius: 1em;
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	opacity: 0;
+	transition: opacity 100ms;
+	pointer-events: none;
 }
 
 .book-card:hover .delete-btn {
-	display: flex;
+	opacity: 1;
+	pointer-events: initial;
 }
+
 .book-img {
-	position: relative;
-	bottom: 0;
-	height: min-content;
 	filter: drop-shadow(rgba(99, 99, 99, 0.2) 0px 2px 8px 0px);
 }
