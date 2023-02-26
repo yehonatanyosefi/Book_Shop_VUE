@@ -10,9 +10,9 @@ import AboutPage from './pages/AboutPage.js'
 
 const options = {
     template: `
-        <section class="container">
+            <section class="app">
             <AppHeader @setRoute="route = $event"/>
-            <main class="router-view">
+            <main class="container router-view">
                 <HomePage v-if="route === 'HomePage'"/>
                 <bookIndex v-if="route === 'BookIndex'"/>
                 <AboutPage v-if="route === 'AboutPage'"/>

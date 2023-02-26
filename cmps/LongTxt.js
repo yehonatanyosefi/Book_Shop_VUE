@@ -24,7 +24,7 @@ export default {
                return this.txt
           },
           moreTxt() {
-               return !this.isExpanded ? 'more...' : 'less'
+               return !this.isExpanded ? ' more...' : ' ...less'
           },
           isShowingMore() {
                return this.canShowMore && !this.isExpanded

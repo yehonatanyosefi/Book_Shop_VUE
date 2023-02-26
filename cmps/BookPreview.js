@@ -1,3 +1,5 @@
+import { i18 } from '../services/i18n.service.js'
+
 export default {
     props: ['book'],
     template: `
@@ -13,7 +15,7 @@ export default {
     computed: {
         formattedPrice() {
             const { currencyCode, amount } = this.book.listPrice
-            return new Intl.NumberFormat('en-IN', { style: 'currency', currency: currencyCode }).format(amount)
+            return i18.formatCurrency(currencyCode, amount)
         },
     }
 }

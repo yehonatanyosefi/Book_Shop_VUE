@@ -41,13 +41,15 @@ object {
 	outline: 1px solid gold;
 }
 
-button {
+button,
+a {
 	all: unset;
 	cursor: pointer;
 	filter: drop-shadow(rgba(0, 0, 0, 0.25) 1.5px 1.5px 1.5px);
 	transition: scale 250ms;
 }
-button:hover {
+button:hover,
+a:hover {
 	scale: 1.025;
 }
 

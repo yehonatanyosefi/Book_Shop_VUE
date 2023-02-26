@@ -1,4 +1,5 @@
 import LongTxt from './LongTxt.js'
+import { i18 } from '../services/i18n.service.js'
 
 export default {
     props: ['book'],
@@ -6,12 +7,14 @@ export default {
         <section class="book-details">
             <h2>{{ book.title }}</h2>
             <h3>{{ book.subtitle }}</h3>
-            <h5 :class="priceClass">Price: {{ formattedPrice }}</h5>
-            <h5>{{ getPageText }}</h5>
-            <h5 v-if="publishedText">{{ publishedText }}</h5>
-            <h5 v-if="book.listPrice.isOnSale">On Sale</h5>
+            <h4 :class="priceClass">Price: {{ formattedPrice }}</h4>
+            <h4 v-if="pageText">{{ pageText }}</h4>
+            <h4 v-if="publishedText">{{ publishedText }}</h4>
             <LongTxt :txt="book.description" :length="length"/>
-            <img :src="book.thumbnail" alt="">
+            <div class="book-img">
+                <img v-if="book.listPrice.isOnSale" src="../assets/img/sale.png" class="on-sale"/>
+                <img :src="book.thumbnail">
+            </div>
             <button @click="closeDetails">Close</button>
         </section>
     `,
@@ -31,7 +34,7 @@ export default {
             if (pageCount > 500) return 'Serious Reading'
             if (pageCount > 200) return 'Decent Reading'
             if (pageCount < 100) return 'Light Reading'
-            return 'Read :)'
+            return ''
         },
         publishedText() {
             const { publishedDate: date } = this.book
@@ -41,7 +44,8 @@ export default {
             return ''
         },
         priceClass() {
-            const price = this.book.listPrice.amount
+            const { currencyCode, amount } = this.book.listPrice
+            const price = i18.currMultiplier(currencyCode, amount)
             return {
                 'red': price > 150,
                 'green': price < 20
@@ -49,7 +53,7 @@ export default {
         },
         formattedPrice() {
             const { currencyCode, amount } = this.book.listPrice
-            return new Intl.NumberFormat('en-IN', { style: 'currency', currency: currencyCode }).format(amount)
+            return i18.formatCurrency(currencyCode, amount)
         },
 
     },

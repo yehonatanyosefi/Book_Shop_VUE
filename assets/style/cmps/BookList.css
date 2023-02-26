@@ -22,11 +22,19 @@
 	height: 100%;
 	grid-template-rows: auto 1fr auto;
 }
-.book-card .on-sale {
+.book-img {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	width: 100%;
+	filter: drop-shadow(rgba(99, 99, 99, 0.2) 0px 2px 8px 0px);
+}
+.on-sale {
 	position: absolute;
 	width: 50%;
-}
-.book-card .price {
+	left: 0;
+	top: 0;
 }
 
 .book-card .delete-btn {
@@ -51,8 +59,4 @@
 .book-card:hover .delete-btn {
 	opacity: 1;
 	pointer-events: initial;
-}
-
-.book-img {
-	filter: drop-shadow(rgba(99, 99, 99, 0.2) 0px 2px 8px 0px);
 }

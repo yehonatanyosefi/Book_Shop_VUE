@@ -6,8 +6,12 @@
 	margin-block-start: 10px;
 }
 .book-details img {
-	width: 200px;
+	max-width: 200px;
 	justify-self: center;
+}
+
+.book-details .book-img {
+	max-width: 200px;
 }
 .book-details button {
 	justify-self: end;

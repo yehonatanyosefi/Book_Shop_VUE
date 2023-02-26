@@ -1,5 +1,8 @@
 'use strict'
-const USDTOILS_CONV = 3.53
+export const i18 = {
+    formatCurrency,
+    currMultiplier,
+}
 
 var gTrans = {
     'a': {
@@ -35,13 +38,13 @@ function setLang(lang) {
     gCurrLang = lang
 }
 
-function formatCurrency(num) {
-    if (gCurrLang === 'he') {
-        num *= USDTOILS_CONV
-        return new Intl.NumberFormat('he-IL', { style: 'currency', currency: 'ILS' }).format(num)
-    }
-    return `${num}$`
-}
+// function formatCurrency(num) {
+//     if (gCurrLang === 'he') {
+//         num *= USDTOILS_CONV
+//         return new Intl.NumberFormat('he-IL', { style: 'currency', currency: 'ILS' }).format(num)
+//     }
+//     return `${num}$`
+// }
 
 function formatNumSimple(num) {
     return num.toLocaleString('es')
@@ -51,8 +54,23 @@ function formatNum(num) {
     return new Intl.NumberFormat(gCurrLang).format(num)
 }
 
-function formatCurrency(num) {
-    return new Intl.NumberFormat('he-IL', { style: 'currency', currency: 'ILS' }).format(num)
+function formatCurrency(currency = USD, num) {
+    num = currMultiplier(currency, num)
+    return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(num)
+}
+
+function currMultiplier(currency, num) {
+    let currMultiplier = 1
+    switch (currency) {
+        case 'EUR':
+            currMultiplier = 1.05
+            break
+        case 'ILS':
+            currMultiplier = 0.27
+            break
+    }
+    num *= currMultiplier
+    return num
 }
 
 function formatDate(time) {

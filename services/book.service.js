@@ -53,7 +53,7 @@ function getEmptyBook(id = '', priceAmount = 150) {
         title: null,
         listPrice: {
             amount: priceAmount,
-            currencyCode: 'NIS',
+            currencyCode: 'USD',
             isOnSale: false,
         },
     }

@@ -5,7 +5,7 @@ export default {
                 v-model="filterBy.title"
                 @input="filter" 
                 placeholder="Search"
-                type="text" />
+                type="search" />
             <input 
                 v-model="filterBy.price"
                 @input="filter"
