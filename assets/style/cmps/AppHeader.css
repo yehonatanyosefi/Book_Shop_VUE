@@ -1,9 +1,13 @@
 .app-header {
 	height: 5vh;
 
-	padding: 10px;
 	background-color: var(--clr4);
 	color: var(--clr1);
+}
+.app-header-content {
+	height: 5vh;
+	margin: 0;
+	padding: 10px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

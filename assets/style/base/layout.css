@@ -1,5 +1,5 @@
 .app {
-	margin: 0 auto;
+	margin: 0;
 	display: grid;
 	grid-template-columns: 1fr clamp(85vw, 1100px, 97.5vh) 1fr;
 	grid-template-rows: repeat(auto-fit, fit-content);
@@ -14,5 +14,28 @@
 }
 
 .router-view {
-	min-height: calc(90vh - 0.6rem);
+	min-height: calc(90vh);
+	/* overflow-y: auto; */
+}
+/* scrollbar */
+::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+}
+
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.3);
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255, 255, 255, 0.3);
 }

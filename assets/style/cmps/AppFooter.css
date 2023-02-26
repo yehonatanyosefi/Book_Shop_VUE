@@ -7,6 +7,7 @@
 	padding: 10px;
 	background-color: var(--clr4);
 	color: var(--clr1);
+	border-radius: 0;
 }
 .app-footer p {
 	margin: 0;
