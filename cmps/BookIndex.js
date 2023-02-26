@@ -49,8 +49,8 @@ export default {
     },
     computed: {
         filteredBooks() {
-            const regex = new RegExp(this.filterBy.vendor, 'i')
-            return this.books.filter(book => regex.test(book.vendor))
+            const regex = new RegExp(this.filterBy.title, 'i')
+            return this.books.filter(book => regex.test(book.title))
         }
     },
     created() {

@@ -22,7 +22,7 @@ const options = {
     `,
     data() {
         return {
-            route: 'HomePage',
+            route: 'BookIndex',
         }
     },
     components: {

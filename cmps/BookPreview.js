@@ -2,8 +2,8 @@ export default {
     props: ['book'],
     template: `
         <article class="book-preview">
-            <h2>{{ book.vendor }}</h2>
-            <h3>{{ book.maxSpeed }}</h3>
+            <h4>{{ book.title }}</h4>
+            <img :src="book.thumbnail">
         </article>
     `,
 }

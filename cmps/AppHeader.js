@@ -1,7 +1,7 @@
 export default {
     template: `
         <header class="app-header">
-            <h1>books</h1>
+            <h1>Books</h1>
             <nav>
                 <a @click="setRoute('HomePage')" href="#">Home</a>
                 <a @click="setRoute('BookIndex')" href="#">Books</a>

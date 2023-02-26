@@ -12,3 +12,10 @@
 .book-details button {
 	justify-self: end;
 }
+
+.red {
+	color: red;
+}
+.green {
+	color: green;
+}
