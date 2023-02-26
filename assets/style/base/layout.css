@@ -1,7 +1,7 @@
 .app {
 	margin: 0 auto;
 	display: grid;
-	grid-template-columns: 1fr 1100px 1fr;
+	grid-template-columns: 1fr clamp(85vw, 1100px, 97.5vh) 1fr;
 	grid-template-rows: repeat(auto-fit, fit-content);
 }
 

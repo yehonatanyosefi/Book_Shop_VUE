@@ -12,7 +12,7 @@ const options = {
     template: `
             <section class="app">
             <AppHeader @setRoute="route = $event"/>
-            <main class="container router-view">
+            <main class="router-view">
                 <HomePage v-if="route === 'HomePage'"/>
                 <bookIndex v-if="route === 'BookIndex'"/>
                 <AboutPage v-if="route === 'AboutPage'"/>
