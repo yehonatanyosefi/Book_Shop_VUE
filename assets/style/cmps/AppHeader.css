@@ -1,17 +1,18 @@
 .app-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    
-    height: 5vh;
-    
-    padding: 10px;
-    background-color: lightblue;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	height: 5vh;
+
+	padding: 10px;
+	background-color: var(--clr4);
+	color: var(--clr1);
 }
 .app-header h1 {
-    margin: 0;
+	margin: 0;
 }
 .app-header nav {
-    display: flex;
-    gap: 10px;
+	display: flex;
+	gap: 10px;
 }

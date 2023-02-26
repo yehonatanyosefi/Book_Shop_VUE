@@ -1,12 +1,13 @@
 * {
 	box-sizing: border-box;
+	border-radius: 0.3em;
 }
 
 body {
 	margin: 0;
 	padding: 0;
-	font-family: 'Inter', sans-serif;
-	color: var(--gray3);
+	font-family: OpenSans, serif;
+	color: var(--clr1);
 }
 
 h1,
@@ -38,4 +39,13 @@ object {
 
 .debug * {
 	outline: 1px solid gold;
+}
+
+button {
+	all: unset;
+	cursor: pointer;
+}
+
+input {
+	filter: drop-shadow(rgba(0, 0, 0, 0.24) 3px 3px 8px);
 }

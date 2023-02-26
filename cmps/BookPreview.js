@@ -3,7 +3,17 @@ export default {
     template: `
         <article class="book-preview">
             <h4>{{ book.title }}</h4>
-            <img :src="book.thumbnail">
+            <h5 class="price">{{ formattedPrice }}</h5>
+            <div class="book-img">
+                <img v-if="book.listPrice.isOnSale" src="../assets/img/sale.png" class="on-sale"/>
+                <img :src="book.thumbnail">
+            </div>
         </article>
     `,
+    computed: {
+        formattedPrice() {
+            const { currencyCode, amount } = this.book.listPrice
+            return new Intl.NumberFormat('en-IN', { style: 'currency', currency: currencyCode }).format(amount)
+        },
+    }
 }

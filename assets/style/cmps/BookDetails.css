@@ -2,7 +2,7 @@
 	display: grid;
 
 	padding: 10px;
-	background-color: lightsteelblue;
+	background-color: var(--clr3);
 	margin-block-start: 10px;
 }
 .book-details img {

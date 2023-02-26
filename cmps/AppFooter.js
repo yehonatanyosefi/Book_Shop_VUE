@@ -1,7 +1,7 @@
 export default {
     template: `
-        <header class="app-footer">
-            <p>Coffeerights 2023</p>
+        <header class="app-footer center">
+            <p>&copy Yehonatan Yosefi</p>
         </header>
     `,
 }

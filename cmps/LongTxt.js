@@ -1,37 +1,33 @@
 export default {
-     props: ['book', 'length'],
+     props: ['txt', 'length'],
      template: `
-        <p>{{ getDescriptionText }}<span v-if="isShowingMore">...</span>
-        <button @click="expandToggle" v-if="canShowMore">{{ getMoreTxt }}</button></p>
+        <p>{{ descriptionText }}<span v-if="isShowingMore">...</span>
+        <button  v-if="canShowMore" @click="toggleExpand">{{ moreTxt }}</button></p>
     `,
      data() {
           return {
-               isMore: false,
                isExpanded: false,
           }
      },
      methods: {
-          toggleIsMore() {
-               this.isMore = !this.isMore
-          },
-          expandToggle() {
+          toggleExpand() {
                this.isExpanded = !this.isExpanded
           },
      },
      computed: {
-          getDescriptionText() {
-               if (this.book.description.length > this.length && !this.isExpanded) return this.book.description.substring(0, this.length)
-               return this.book.description
-          },
-          getMoreTxt() {
-               if (!this.isExpanded) return 'more...'
-               return 'less'
-          },
           canShowMore() {
-               return this.book.description.length > this.length
+               return this.txt.length > this.length
+          },
+          descriptionText() {
+               if (this.canShowMore && !this.isExpanded)
+                    return this.txt.substring(0, this.length)
+               return this.txt
+          },
+          moreTxt() {
+               return !this.isExpanded ? 'more...' : 'less'
           },
           isShowingMore() {
-               return this.book.description.length > this.length && !this.isExpanded
+               return this.canShowMore && !this.isExpanded
           },
      },
 }

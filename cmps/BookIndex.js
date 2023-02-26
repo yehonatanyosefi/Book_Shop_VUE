@@ -11,8 +11,8 @@ export default {
         <section class="book-index">
             <bookFilter @filter="setFilterBy"/>
             <bookList 
-                :books="filteredBooks" 
                 v-if="books"
+                :books="filteredBooks" 
                 @remove="removeBook" 
                 @show-details="showBookDetails" />
             <bookEdit @book-saved="onSaveBook"/>
@@ -45,13 +45,17 @@ export default {
         },
         setFilterBy(filterBy) {
             this.filterBy = filterBy
-        }
+        },
     },
     computed: {
         filteredBooks() {
+            if (!this.filterBy.price) {
+                this.filterBy.title = ''
+                this.filterBy.price = 200
+            }
             const regex = new RegExp(this.filterBy.title, 'i')
-            return this.books.filter(book => regex.test(book.title))
-        }
+            return this.books.filter(book => regex.test(book.title) && book.listPrice.amount <= this.filterBy.price)
+        },
     },
     created() {
         bookService.query()

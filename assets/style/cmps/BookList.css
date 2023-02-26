@@ -4,10 +4,54 @@
 	gap: 10px;
 
 	padding: 10px;
-	background-color: lightblue;
+	background-color: var(--clr5);
 	list-style-type: none;
 }
-.book-list ul li {
+
+.book-list .book-card {
 	padding: 10px;
-	background-color: darkseagreen;
+	background-color: var(--clr4);
+	position: relative;
+	box-shadow: rgba(0, 0, 0, 0.24) 3px 3px 8px;
+	max-width: max-content;
+	position: relative;
+	cursor: pointer;
+	border-radius: 0.5em;
+}
+.book-preview {
+	display: grid;
+	height: 100%;
+}
+.book-card .on-sale {
+	position: absolute;
+	width: 50%;
+}
+.book-card .price {
+	flex: 1;
+}
+
+.book-card .delete-btn {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: -2%;
+	right: -2%;
+	width: 1.5em;
+	height: 1.5em;
+	border: 1px solid var(--clr2);
+	background-color: var(--clr2);
+	color: var(--clr5);
+	border-radius: 1em;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.book-card:hover .delete-btn {
+	display: flex;
+}
+.book-img {
+	position: relative;
+	bottom: 0;
+	height: min-content;
+	filter: drop-shadow(rgba(99, 99, 99, 0.2) 0px 2px 8px 0px);
 }
