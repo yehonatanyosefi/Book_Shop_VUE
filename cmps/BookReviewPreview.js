@@ -4,7 +4,7 @@ export default {
         <ul>
             <li class="clean-list">Reviews:</li>
             <li v-for="review in book.reviews" :key="review.id" class="clean-list">
-                Name: {{review.name}}
+                Review:  {{review.name}}
                 <span v-for="rate in parseInt(review.rate)">
                     <i class="fa-solid fa-star"></i>
                 </span>

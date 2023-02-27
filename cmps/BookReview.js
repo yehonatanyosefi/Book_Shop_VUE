@@ -8,7 +8,7 @@ export default {
     template: `
         <section v-if="book" class="book-details">
             <div>Add a review: </div>
-            <form @submit="addReview">
+            <form @submit.prevent="addReview">
                 <label for="review-name">Name: </label>
                 <input type="text" id="review-name" v-model="reviewName" placeHolder="Name" />
                 <div class="star-reviews">
@@ -35,10 +35,13 @@ export default {
                     </label>
                 </div>
                 <div>Date Read: <input type="date" v-model="date"/></div>
-                <button type="submit" @click.prevent="addReview">Submit</button>
+                <button type="submit">Submit</button>
             </form>
         </section>
     `,
+    created() {
+        this.resetDate()
+    },
     data() {
         return {
             reviewName: '',
@@ -67,8 +70,16 @@ export default {
         },
         resetVars() {
             this.reviewName = ''
-            this.date = ''
             this.checkedStars = 3
+            this.resetDate()
+        },
+        resetDate() {
+            const currentDate = new Date()
+            const year = currentDate.getFullYear()
+            const month = String(currentDate.getMonth() + 1).padStart(2, '0')
+            const day = String(currentDate.getDate()).padStart(2, '0')
+            const formattedDate = `${year}-${month}-${day}`
+            this.date = formattedDate
         },
         // currHover(num) {
         //     this.currHoverNum = num
