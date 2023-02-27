@@ -35,8 +35,8 @@ export default {
         }
     },
     methods: {
-        updateBook(book) {
-            this.book = book
+        updateBook(updatedBook) {
+            this.book = updatedBook
         },
         removeReview(reviewId) {
             bookService.removeReview(this.book.id, reviewId)
