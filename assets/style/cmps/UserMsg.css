@@ -1,0 +1,9 @@
+.user-msg {
+	height: 200px;
+	width: 200px;
+	background-color: var(--clr5);
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	translate: -50% -50%;
+}

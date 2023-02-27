@@ -1,10 +1,12 @@
-import LongTxt from './LongTxt.js'
+import LongTxt from '../cmps/LongTxt.js'
+import BookReview from '../cmps/BookReview.js'
+import BookReviewPreview from '../cmps/BookReviewPreview.js'
 import { i18 } from '../services/i18n.service.js'
+import { bookService } from '../services/book.service.js'
 
 export default {
-    props: ['book'],
     template: `
-        <section class="book-details">
+        <section v-if="book" class="book-details">
             <h2>{{ book.title }}</h2>
             <h3>{{ book.subtitle }}</h3>
             <h4 :class="priceClass">Price: {{ formattedPrice }}</h4>
@@ -15,18 +17,26 @@ export default {
                 <img v-if="book.listPrice.isOnSale" src="../assets/img/sale.png" class="on-sale"/>
                 <img :src="book.thumbnail">
             </div>
-            <button @click="closeDetails">Close</button>
+            <BookReview :book="book" @update-book="updateBook"/>
+            <BookReviewPreview :book="book" />
+            <RouterLink to="/book/" class="center">Close</RouterLink>
         </section>
     `,
+    created() {
+        const { bookId } = this.$route.params
+        bookService.get(bookId)
+            .then(book => this.book = book)
+    },
     data() {
         return {
             length: 100,
+            book: null,
         }
     },
     methods: {
-        closeDetails() {
-            this.$emit('hide-details')
-        }
+        updateBook(book) {
+            this.book = book
+        },
     },
     computed: {
         pageText() {
@@ -55,9 +65,10 @@ export default {
             const { currencyCode, amount } = this.book.listPrice
             return i18.formatCurrency(currencyCode, amount)
         },
-
     },
     components: {
         LongTxt,
+        BookReviewPreview,
+        BookReview,
     },
 }

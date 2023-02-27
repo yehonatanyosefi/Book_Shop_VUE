@@ -3,11 +3,11 @@
 
 	background-color: var(--clr4);
 	color: var(--clr1);
+	border-radius: 0;
 }
 .app-header-content {
 	height: 5vh;
 	margin: 0;
-	padding: 10px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -25,4 +25,7 @@
 }
 .app-header .logo:hover {
 	scale: 1.025;
+}
+.router-link-active:not(.logo) {
+	box-shadow: inset 0 -2px 0 var(--clr5);
 }

@@ -10,7 +10,7 @@
 
 .book-list .book-card {
 	padding: 10px;
-	background-color: var(--clr4);
+	background-color: var(--clr5);
 	position: relative;
 	box-shadow: rgba(0, 0, 0, 0.24) 3px 3px 8px;
 	max-width: max-content;
@@ -46,11 +46,10 @@
 	right: -2%;
 	width: 1.5em;
 	height: 1.5em;
-	border: 1px solid var(--clr1);
-	background-color: var(--clr1);
-	color: var(--clr5);
+	background-color: var(--clr5);
+	color: var(--clr1);
 	border-radius: 1em;
-	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
 	opacity: 0;
 	transition: opacity 100ms;
 	pointer-events: none;

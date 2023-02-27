@@ -3,11 +3,11 @@ export default {
         <header class="app full app-header">
             <div class="app-header-content">
 
-                <h1 @click="setRoute('HomePage')" class="animate__animated animate__slideInLeft logo" href="#">Books</h1>
+                <RouterLink to="/" class="animate__animated animate__slideInLeft logo">Miss Books</RouterLink>
                 <nav>
-                    <a @click="setRoute('HomePage')" href="#" class="animate__animated animate__zoomIn">Home</a>
-                    <a @click="setRoute('BookIndex')" href="#" class="animate__animated animate__zoomIn">Books</a>
-                    <a @click="setRoute('AboutPage')" href="#" class="animate__animated animate__zoomIn">About</a>
+                    <RouterLink to="/" class="animate__animated animate__zoomIn">Home</RouterLink> |
+                    <RouterLink to="/book" class="animate__animated animate__zoomIn">Books</RouterLink> |
+                    <RouterLink to="/about" class="animate__animated animate__zoomIn">About</RouterLink>
                 </nav>
             </div>
         </header>

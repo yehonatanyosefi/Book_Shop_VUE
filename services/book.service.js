@@ -4,7 +4,6 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 import booksJSON from '../books.json' assert {type: 'json'}
 
-
 const BOOK_KEY = 'bookDB'
 
 _createBooks()
@@ -15,6 +14,7 @@ export const bookService = {
     remove,
     save,
     getEmptyBook,
+    addReview,
 }
 
 function query(filterBy = {}) {
@@ -68,7 +68,8 @@ function getEmptyBook(id = '', priceAmount = 150) {
             amount: priceAmount,
             currencyCode: 'USD',
             isOnSale: false,
-        }
+        },
+        reviews: [],
     }
 }
 
@@ -78,4 +79,12 @@ function _createBooks() {
         books = booksJSON
         utilService.saveToStorage(BOOK_KEY, books)
     }
+}
+
+function addReview(bookId, review) {
+    return get(bookId)
+        .then(book => {
+            book.reviews.push(review)
+            return save(book)
+        })
 }

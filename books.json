@@ -19,7 +19,8 @@
       "amount": 109,
       "currencyCode": "EUR",
       "isOnSale": false
-    }
+    },
+    "reviews": []
   },
   {
     "id": "JYOJa2NpSCq",
@@ -41,7 +42,8 @@
       "amount": 44,
       "currencyCode": "EUR",
       "isOnSale": true
-    }
+    },
+    "reviews": []
   },
   {
     "id": "1y0Oqts35DQ",
@@ -63,7 +65,8 @@
       "amount": 108,
       "currencyCode": "ILS",
       "isOnSale": false
-    }
+    },
+    "reviews": []
   },
   {
     "id": "kSnfIJyikTP",
@@ -85,7 +88,8 @@
       "amount": 30,
       "currencyCode": "EUR",
       "isOnSale": true
-    }
+    },
+    "reviews": []
   },
   {
     "id": "f4iuVmbuKCC",
@@ -107,7 +111,8 @@
       "amount": 19,
       "currencyCode": "USD",
       "isOnSale": false
-    }
+    },
+    "reviews": []
   },
   {
     "id": "U2rfZO6oBZf",
@@ -129,7 +134,8 @@
       "amount": 91,
       "currencyCode": "USD",
       "isOnSale": true
-    }
+    },
+    "reviews": []
   },
   {
     "id": "xI0wrXaaAcq",
@@ -151,7 +157,8 @@
       "amount": 90,
       "currencyCode": "USD",
       "isOnSale": false
-    }
+    },
+    "reviews": []
   },
   {
     "id": "9laHCEdSpFy",
@@ -173,7 +180,8 @@
       "amount": 176,
       "currencyCode": "EUR",
       "isOnSale": false
-    }
+    },
+    "reviews": []
   },
   {
     "id": "nGhVwZvGCGp",
@@ -195,7 +203,8 @@
       "amount": 116,
       "currencyCode": "USD",
       "isOnSale": true
-    }
+    },
+    "reviews": []
   },
   {
     "id": "Q8Q9Lsd03BD",
@@ -217,7 +226,8 @@
       "amount": 145,
       "currencyCode": "EUR",
       "isOnSale": false
-    }
+    },
+    "reviews": []
   },
   {
     "id": "bd7a76kARao",
@@ -239,7 +249,8 @@
       "amount": 157,
       "currencyCode": "ILS",
       "isOnSale": true
-    }
+    },
+    "reviews": []
   },
   {
     "id": "qKyG0vqeO3e",
@@ -261,7 +272,8 @@
       "amount": 57,
       "currencyCode": "USD",
       "isOnSale": true
-    }
+    },
+    "reviews": []
   },
   {
     "id": "2RvT48ZNInj",
@@ -283,7 +295,8 @@
       "amount": 167,
       "currencyCode": "ILS",
       "isOnSale": false
-    }
+    },
+    "reviews": []
   },
   {
     "id": "5z2s9pDXAYj",
@@ -305,7 +318,8 @@
       "amount": 150,
       "currencyCode": "USD",
       "isOnSale": true
-    }
+    },
+    "reviews": []
   },
   {
     "id": "zBZu5cDEWha",
@@ -327,7 +341,8 @@
       "amount": 58,
       "currencyCode": "ILS",
       "isOnSale": true
-    }
+    },
+    "reviews": []
   },
   {
     "id": "aOI7tQuPZ2f",
@@ -349,7 +364,8 @@
       "amount": 78,
       "currencyCode": "USD",
       "isOnSale": false
-    }
+    },
+    "reviews": []
   },
   {
     "id": "WBooB82Uvwu",
@@ -371,7 +387,8 @@
       "amount": 118,
       "currencyCode": "ILS",
       "isOnSale": false
-    }
+    },
+    "reviews": []
   },
   {
     "id": "xm1z5bbZjlS",
@@ -393,7 +410,8 @@
       "amount": 60,
       "currencyCode": "EUR",
       "isOnSale": false
-    }
+    },
+    "reviews": []
   },
   {
     "id": "u3j6QIKLlJb",
@@ -415,7 +433,8 @@
       "amount": 110,
       "currencyCode": "USD",
       "isOnSale": true
-    }
+    },
+    "reviews": []
   },
   {
     "id": "vxYYYdVlEH3",
@@ -437,6 +456,7 @@
       "amount": 186,
       "currencyCode": "ILS",
       "isOnSale": true
-    }
+    },
+    "reviews": []
   }
 ]

@@ -1,31 +1,24 @@
 import { bookService } from '../services/book.service.js'
+import { eventBusService } from '../services/event-bus.service.js'
 
-import BookFilter from './BookFilter.js'
-import BookList from './BookList.js'
+import BookFilter from '../cmps/BookFilter.js'
+import BookList from '../cmps/BookList.js'
 
-import BookDetails from './BookDetails.js'
-import BookEdit from './BookEdit.js'
 
 export default {
     template: `
         <section class="book-index">
-            <bookFilter @filter="setFilterBy"/>
-            <bookList 
-                v-if="books"
-                :books="filteredBooks" 
-                @remove="removeBook" 
-                @show-details="showBookDetails" />
-            <bookEdit @book-saved="onSaveBook"/>
-            <bookDetails 
-                v-if="selectedBook" 
-                @hide-details="selectedBook = null"
-                :book="selectedBook"/>
+            <RouterLink to="/book/edit">Add Book</RouterLink>
+            <BookFilter @filter="setFilterBy"/>
+            <BookList 
+            v-if="books"
+            :books="filteredBooks" 
+            @remove="removeBook"  />
         </section>
     `,
     data() {
         return {
             books: null,
-            selectedBook: null,
             filterBy: {},
         }
     },
@@ -35,13 +28,11 @@ export default {
                 .then(() => {
                     const idx = this.books.findIndex(book => book.id === bookId)
                     this.books.splice(idx, 1)
+                    eventBusService.emit('show-msg', { txt: 'Book removed', type: 'success' })
                 })
-        },
-        showBookDetails(bookId) {
-            this.selectedBook = this.books.find(book => book.id === bookId)
-        },
-        onSaveBook(newBook) {
-            this.books.unshift(newBook)
+                .catch(err => {
+                    eventBusService.emit('show-msg', { txt: 'Book remove failed', type: 'error' })
+                })
         },
         setFilterBy(filterBy) {
             this.filterBy = filterBy
@@ -64,7 +55,5 @@ export default {
     components: {
         BookFilter,
         BookList,
-        BookDetails,
-        BookEdit,
     }
 }
