@@ -1,5 +1,7 @@
 import { bookService } from "../services/book.service.js"
 import { eventBusService } from "../services/event-bus.service.js"
+//TODO: add some more custom parameters
+//TODO: edit current book?
 
 export default {
     template: `

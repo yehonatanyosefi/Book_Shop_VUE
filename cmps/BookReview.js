@@ -1,13 +1,14 @@
 import { bookService } from '../services/book.service.js'
 import { eventBusService } from "../services/event-bus.service.js"
-
+import { utilService } from '../services/util.service.js'
+//TODO: refactor stars
 
 export default {
     props: ['book'],
     template: `
         <section v-if="book" class="book-details">
-            <div>Add Review: </div>
-            <form @submit="sendReview">
+            <div>Add a review: </div>
+            <form @submit="addReview">
                 <label for="review-name">Name: </label>
                 <input type="text" id="review-name" v-model="reviewName" placeHolder="Name" />
                 <div class="star-reviews">
@@ -33,8 +34,8 @@ export default {
                         <i class="star star5 fa-star" :class="content5" @mouseover="isHover5 = true" @mouseleave="isHover5 = false"></i>
                     </label>
                 </div>
-                <div>Date: <input type="date" v-model="date"/></div>
-                <button type="submit" @click.prevent="sendReview">Submit</button>
+                <div>Date Read: <input type="date" v-model="date"/></div>
+                <button type="submit" @click.prevent="addReview">Submit</button>
             </form>
         </section>
     `,
@@ -52,8 +53,8 @@ export default {
         }
     },
     methods: {
-        sendReview() {
-            const review = { name: this.reviewName || 'Anonymous', rate: this.checkedStars, date: this.date }
+        addReview() {
+            const review = { name: this.reviewName || 'Anonymous', rate: this.checkedStars, date: this.date, id: utilService.makeId() }
             bookService.addReview(this.book.id, review)
                 .then(updatedBook => {
                     eventBusService.emit('show-msg', { txt: 'Review Added!', type: 'success' })

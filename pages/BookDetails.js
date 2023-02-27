@@ -3,6 +3,7 @@ import BookReview from '../cmps/BookReview.js'
 import BookReviewPreview from '../cmps/BookReviewPreview.js'
 import { i18 } from '../services/i18n.service.js'
 import { bookService } from '../services/book.service.js'
+import { eventBusService } from "../services/event-bus.service.js"
 
 export default {
     template: `
@@ -18,7 +19,7 @@ export default {
                 <img :src="book.thumbnail">
             </div>
             <BookReview :book="book" @update-book="updateBook"/>
-            <BookReviewPreview :book="book" />
+            <BookReviewPreview :book="book" @remove-review="removeReview" />
             <RouterLink to="/book/" class="center">Close</RouterLink>
         </section>
     `,
@@ -37,6 +38,16 @@ export default {
         updateBook(book) {
             this.book = book
         },
+        removeReview(reviewId) {
+            bookService.removeReview(this.book.id, reviewId)
+                .then(book => {
+                    this.book = book
+                    eventBusService.emit('show-msg', { txt: 'Review removed', type: 'success' })
+                })
+                .catch(err => {
+                    eventBusService.emit('show-msg', { txt: 'Review remove failed', type: 'error' })
+                })
+        }
     },
     computed: {
         pageText() {

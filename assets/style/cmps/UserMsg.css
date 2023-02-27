@@ -6,4 +6,8 @@
 	left: 50%;
 	top: 50%;
 	translate: -50% -50%;
+	border: 1px solid black;
+	padding: 10px;
+	font-size: 2rem;
+	box-shadow: rgba(0, 0, 0, 0.24) 3px 3px 8px;
 }
