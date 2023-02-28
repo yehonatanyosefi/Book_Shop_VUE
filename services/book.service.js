@@ -2,7 +2,7 @@
 
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
-import booksJSON from '../books.json' assert {type: 'json'}
+import booksJSON from '../json/books.json' assert {type: 'json'}
 
 const BOOK_KEY = 'bookDB'
 
@@ -34,6 +34,7 @@ function query(filterBy = {}) {
 
 function get(bookId) {
     return storageService.get(BOOK_KEY, bookId)
+        .then(_setNextPrevBookId)
 }
 
 function remove(bookId) {
@@ -56,10 +57,10 @@ function getEmptyBook(id = '', priceAmount = 150) {
         authors: [
             'Barbara booktland'
         ],
-        'publishedDate': 1999,
-        'description': 'placerat nisi sodales suscipit tellus tincidunt mauris elit sit luctus interdum ad dictum platea vehicula conubia fermentum habitasse congue suspendisse',
-        'pageCount': 713,
-        'categories': [
+        publishedDate: 1999,
+        description: 'placerat nisi sodales suscipit tellus tincidunt mauris elit sit luctus interdum ad dictum platea vehicula conubia fermentum habitasse congue suspendisse',
+        pageCount: 713,
+        categories: [
             'Computers',
             'Hack',
         ],
@@ -98,4 +99,14 @@ function removeReview(bookId, reviewId) {
             return save(book)
         })
 
+}
+
+function _setNextPrevBookId(book) {
+    return storageService.query(BOOK_KEY)
+        .then((books) => {
+            const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
+            book.nextBookId = books[bookIdx + 1] ? books[bookIdx + 1].id : books[0].id
+            book.prevBookId = books[bookIdx - 1] ? books[bookIdx - 1].id : books[books.length - 1].id
+            return book
+        })
 }

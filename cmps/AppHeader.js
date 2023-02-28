@@ -5,13 +5,23 @@ export default {
 
                 <RouterLink to="/" class="animate__animated animate__slideInLeft logo">Miss Books</RouterLink>
                 <nav>
-                    <RouterLink to="/" class="animate__animated animate__zoomIn">Home</RouterLink> |
-                    <RouterLink to="/book" class="animate__animated animate__zoomIn">Books</RouterLink> |
-                    <RouterLink to="/about" class="animate__animated animate__zoomIn">About</RouterLink>
+                    <RouterLink v-for="({path, title}, idx) in routes" :to="path" :title="title"
+                    class="animate__animated animate__zoomIn">{{title}}</RouterLink>
                 </nav>
+                
             </div>
         </header>
-    `,
+        `,
+    data() {
+        return {
+            routes: [
+                { path: '/', title: 'Home' },
+                { path: '/book', title: 'BookList' },
+                { path: '/book/add', title: 'Add Book' },
+                { path: '/about', title: 'About' },
+            ]
+        }
+    },
     methods: {
         setRoute(route) {
             this.$emit('set-route', route)

@@ -1,16 +1,14 @@
 import { bookService } from "../services/book.service.js"
-import { eventBusService } from "../services/event-bus.service.js"
-//TODO: add some more custom parameters
-//TODO: edit current book?
+import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 
 export default {
     template: `
         <section class="book-edit">
             <form @submit.prevent="save">
-                <h2>Add a book</h2>
+                <h2>Edit book</h2>
                 <input type="text" v-model="book.title" placeholder="Title">
                 <input type="number" v-model.number="book.listPrice.amount">
-                <button>Save</button>
+                <button>Save <i class="fa-solid fa-floppy-disk"></i></button>
             </form>
         </section>
     `,
@@ -23,11 +21,11 @@ export default {
         save() {
             bookService.save(this.book)
                 .then(savedBook => {
-                    eventBusService.emit('show-msg', { txt: 'Book saved', type: 'success' })
+                    showSuccessMsg('Book saved')
                     this.$router.push('/book')
                 })
                 .catch(err => {
-                    eventBusService.emit('show-msg', { txt: 'Book save failed', type: 'error' })
+                    showErrorMsg('Book save failed')
                 })
         }
     },

@@ -3,6 +3,7 @@ import AboutPage from './pages/AboutPage.js' //, { AboutTeam, AboutServices }
 import BookIndex from './pages/BookIndex.js'
 import BookDetails from './pages/BookDetails.js'
 import BookEdit from './pages/BookEdit.js'
+import BookAdd from './pages/BookAdd.js'
 
 const { createRouter, createWebHashHistory } = VueRouter
 const options = {
@@ -32,11 +33,17 @@ const options = {
         },
         {
             path: '/book/:bookId',
-            component: BookDetails
+            component: BookDetails,
+            name: 'details',
+            props: true
         },
         {
             path: '/book/edit/:bookId?',
             component: BookEdit
+        },
+        {
+            path: '/book/add/',
+            component: BookAdd
         },
         // Last fallback if no route was matched:
         {

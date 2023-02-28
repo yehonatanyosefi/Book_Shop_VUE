@@ -14,3 +14,15 @@ function emit(eventName, data) {
 }
 
 export const eventBusService = { on, emit }
+
+
+export function showUserMsg(msg) {
+    eventBusService.emit('show-msg', msg)
+}
+
+export function showSuccessMsg(txt) {
+    showUserMsg({ txt, type: 'success' })
+}
+export function showErrorMsg(txt) {
+    showUserMsg({ txt, type: 'error' })
+}

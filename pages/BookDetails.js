@@ -1,32 +1,38 @@
 import LongTxt from '../cmps/LongTxt.js'
-import BookReview from '../cmps/BookReview.js'
-import BookReviewPreview from '../cmps/BookReviewPreview.js'
+import ReviewList from '../cmps/ReviewList.js'
+import AddReview from '../cmps/AddReview.js'
 import { i18 } from '../services/i18n.service.js'
 import { bookService } from '../services/book.service.js'
-import { eventBusService } from "../services/event-bus.service.js"
+import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 export default {
     template: `
         <section v-if="book" class="book-details">
-            <h2>{{ book.title }}</h2>
-            <h3>{{ book.subtitle }}</h3>
-            <h4 :class="priceClass">Price: {{ formattedPrice }}</h4>
-            <h4 v-if="pageText">{{ pageText }}</h4>
-            <h4 v-if="publishedText">{{ publishedText }}</h4>
-            <LongTxt :txt="book.description" :length="length"/>
-            <div class="book-img">
-                <img v-if="book.listPrice.isOnSale" src="../assets/img/sale.png" class="on-sale"/>
-                <img :src="book.thumbnail">
+            <nav class="center">
+                    <RouterLink :to="'/book/' + book.prevBookId">Previous Book</RouterLink> |
+                    <RouterLink :to="'/book/' + book.nextBookId">Next Book</RouterLink>
+            </nav>
+            <RouterLink to="/book/edit" class="center"><button>Edit Book</button></RouterLink>
+            <hr />
+            <div class="center">
+                <div class="book-img">
+                    <img v-if="book.listPrice.isOnSale" src="../assets/img/sale.png" class="on-sale"/>
+                    <img :src="book.thumbnail">
+                </div>
             </div>
-            <BookReview :book="book" @update-book="updateBook"/>
-            <BookReviewPreview :book="book" @remove-review="removeReview" />
-            <RouterLink to="/book/" class="center">Close</RouterLink>
+            <h2 class="center">{{ book.title }}</h2>
+            <h3 class="center">{{ book.subtitle }}</h3>
+            <h4 :class="priceClass" class="center">Price: {{ formattedPrice }}</h4>
+            <h4 v-if="pageText" class="center">{{ pageText }}</h4>
+            <h4 v-if="publishedText" class="center">{{ publishedText }}</h4>
+            <LongTxt :txt="book.description" :length="length"/>
+            <AddReview :book="book" @add-review="addReview"/>
+            <ReviewList :book="book" @remove-review="removeReview" />
+            <RouterLink to="/book/" class="center">Close <i class="fa-solid fa-x"></i></RouterLink>
         </section>
     `,
     created() {
-        const { bookId } = this.$route.params
-        bookService.get(bookId)
-            .then(book => this.book = book)
+        this.loadBook()
     },
     data() {
         return {
@@ -35,19 +41,30 @@ export default {
         }
     },
     methods: {
-        updateBook(updatedBook) {
-            this.book = updatedBook
+        addReview(newReview) {
+            bookService.addReview(this.book.id, newReview)
+                .then(updatedBook => {
+                    this.book = updatedBook
+                    showSuccessMsg('Review Added!')
+                })
+                .catch(err => {
+                    showErrorMsg('Review failed')
+                })
         },
         removeReview(reviewId) {
             bookService.removeReview(this.book.id, reviewId)
                 .then(book => {
                     this.book = book
-                    eventBusService.emit('show-msg', { txt: 'Review removed', type: 'success' })
+                    showSuccessMsg('Review removed')
                 })
                 .catch(err => {
-                    eventBusService.emit('show-msg', { txt: 'Review remove failed', type: 'error' })
+                    showErrorMsg('Review remove failed')
                 })
-        }
+        },
+        loadBook() {
+            bookService.get(this.bookId)
+                .then(book => this.book = book)
+        },
     },
     computed: {
         pageText() {
@@ -76,10 +93,18 @@ export default {
             const { currencyCode, amount } = this.book.listPrice
             return i18.formatCurrency(currencyCode, amount)
         },
+        bookId() {
+            return this.$route.params.bookId
+        },
     },
     components: {
         LongTxt,
-        BookReviewPreview,
-        BookReview,
+        AddReview,
+        ReviewList,
+    },
+    watch: {
+        bookId() {
+            this.loadBook()
+        },
     },
 }
