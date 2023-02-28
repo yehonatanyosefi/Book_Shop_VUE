@@ -17,7 +17,7 @@ function addBook(bookTitle, books) {
      const info = book.volumeInfo
      const newBook = {
           id: '',
-          title: info.title || 'No Title',
+          title: info.title || 'No title available.',
           subtitle: info.subtitle || '',
           authors: info.authors || [],
           publishedDate: info.publishedDate || 2000,
@@ -27,7 +27,7 @@ function addBook(bookTitle, books) {
           thumbnail: info.imageLinks.thumbnail || '../assets/img/default.png',
           language: info.language || 'en',
           listPrice: {
-               amount: Math.random() * 150 + 50,
+               amount: utilService.getRandomIntInclusive(50, 190),
                currencyCode: 'USD',
                isOnSale: (Math.random() < 0.5) ? false : true,
           },

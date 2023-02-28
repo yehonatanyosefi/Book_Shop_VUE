@@ -3,7 +3,7 @@ import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 
 export default {
     template: `
-        <section class="book-edit">
+        <section class="book-edit" v-if="book">
             <form @submit.prevent="save">
                 <h2>Edit book</h2>
                 <input type="text" v-model="book.title" placeholder="Title">
@@ -14,26 +14,31 @@ export default {
     `,
     data() {
         return {
-            book: bookService.getEmptyBook()
+            book: null
         }
     },
     methods: {
         save() {
             bookService.save(this.book)
                 .then(savedBook => {
-                    showSuccessMsg('Book saved')
+                    showSuccessMsg('Book edited')
                     this.$router.push('/book')
                 })
                 .catch(err => {
-                    showErrorMsg('Book save failed')
+                    showErrorMsg('Book edit failed')
                 })
-        }
+        },
+        loadBook() {
+            bookService.get(this.bookId)
+                .then(book => this.book = book)
+        },
     },
     created() {
-        const { bookId } = this.$route.params
-        if (bookId) {
-            bookService.get(bookId)
-                .then(book => this.book = book)
-        }
+        this.loadBook()
+    },
+    computed: {
+        bookId() {
+            return this.$route.params.bookId
+        },
     },
 }

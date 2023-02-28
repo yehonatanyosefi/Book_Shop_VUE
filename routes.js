@@ -38,7 +38,7 @@ const options = {
             props: true
         },
         {
-            path: '/book/edit/:bookId?',
+            path: '/book/edit/:bookId',
             component: BookEdit
         },
         {

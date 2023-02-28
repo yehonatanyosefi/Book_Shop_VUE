@@ -9,10 +9,10 @@ export default {
     template: `
         <section v-if="book" class="book-details">
             <nav class="center">
-                    <RouterLink :to="'/book/' + book.prevBookId">Previous Book</RouterLink> |
-                    <RouterLink :to="'/book/' + book.nextBookId">Next Book</RouterLink>
+                    <RouterLink :to="'/book/' + book.prevBookId"><i class="fa-solid fa-arrow-left"></i> Previous</RouterLink> |
+                    <RouterLink :to="'/book/' + book.nextBookId">Next<i class="fa-solid fa-arrow-right"></i></RouterLink>
             </nav>
-            <RouterLink to="/book/edit" class="center"><button>Edit Book</button></RouterLink>
+            <RouterLink :to="'/book/edit/'+book.id" class="center"><button>Edit Book</button></RouterLink>
             <hr />
             <div class="center">
                 <div class="book-img">

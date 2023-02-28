@@ -26,6 +26,7 @@ export default {
                     </template>
                 </div>
                 <div>Date Read: <input type="date" v-model="date"/></div>
+                <br>
                 <div class="center">
                     <button type="submit">Submit<i class="fa-solid fa-paper-plane"></i></button>
                 </div>
